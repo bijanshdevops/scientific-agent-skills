@@ -1,0 +1,359 @@
+<title>فهرست مهارت‌های Scientific Agent Skills</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  :root{
+    --paper:#f5f4ef;
+    --paper-raised:#fbfaf6;
+    --ink:#1c231f;
+    --ink-dim:#4b544e;
+    --line:#dcd8c9;
+    --teal:#2f7c72;
+    --teal-ink:#1d5850;
+    --teal-bg:#e2ece9;
+    --amber:#b6752b;
+    --amber-bg:#f1e3cd;
+    --focus:#2f7c72;
+    --pill-bg:#fbfaf6;
+    --pill-active-bg:#2f7c72;
+    --pill-active-ink:#fbfaf6;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --paper:#12181a;
+      --paper-raised:#18201f;
+      --ink:#e9ede9;
+      --ink-dim:#a7b3ab;
+      --line:#2c3532;
+      --teal:#5fc2b3;
+      --teal-ink:#8fdccf;
+      --teal-bg:#1c302c;
+      --amber:#e0a75e;
+      --amber-bg:#3a2f1d;
+      --focus:#5fc2b3;
+      --pill-bg:#18201f;
+      --pill-active-bg:#5fc2b3;
+      --pill-active-ink:#12181a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --paper:#12181a;
+    --paper-raised:#18201f;
+    --ink:#e9ede9;
+    --ink-dim:#a7b3ab;
+    --line:#2c3532;
+    --teal:#5fc2b3;
+    --teal-ink:#8fdccf;
+    --teal-bg:#1c302c;
+    --amber:#e0a75e;
+    --amber-bg:#3a2f1d;
+    --focus:#5fc2b3;
+    --pill-bg:#18201f;
+    --pill-active-bg:#5fc2b3;
+    --pill-active-ink:#12181a;
+  }
+
+  *{box-sizing:border-box;}
+  html{ direction:rtl; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Vazirmatn', 'IBM Plex Mono', Tahoma, ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    direction:rtl;
+    text-align:right;
+  }
+
+  .ltr{ direction:ltr; unicode-bidi:isolate; text-align:left; }
+
+  .wrap{max-width:960px; margin:0 auto; padding:48px 24px 96px;}
+
+  header{margin-bottom:32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:12.5px;
+    letter-spacing:.02em;
+    color:var(--teal-ink);
+    margin:0 0 10px;
+    direction:ltr;
+    text-align:right;
+    unicode-bidi:plaintext;
+  }
+  h1{
+    font-family:'Vazirmatn', Tahoma, sans-serif;
+    font-weight:600;
+    font-size:clamp(26px, 4.6vw, 38px);
+    line-height:1.3;
+    margin:0 0 14px;
+    text-wrap:balance;
+  }
+  .lede{
+    color:var(--ink-dim);
+    font-size:16.5px;
+    line-height:1.9;
+    max-width:64ch;
+    margin:0;
+  }
+  .lede code{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:.85em;
+    direction:ltr;
+    unicode-bidi:isolate;
+    display:inline-block;
+  }
+
+  .toolbar{
+    position:sticky; top:0;
+    background:var(--paper);
+    padding:20px 0 14px;
+    margin-top:28px;
+    border-bottom:1px solid var(--line);
+    z-index:5;
+  }
+  .search-row{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .search-shell{
+    flex:1;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:10px 14px;
+  }
+  .search-shell:focus-within{ border-color:var(--focus); box-shadow:0 0 0 3px color-mix(in srgb, var(--focus) 22%, transparent); }
+  .search-shell svg{ flex:none; opacity:.55; }
+  #search{
+    border:0; outline:0; background:transparent;
+    font-family:'Vazirmatn', Tahoma, sans-serif;
+    font-size:15.5px;
+    color:var(--ink);
+    width:100%;
+  }
+  #search::placeholder{color:var(--ink-dim);}
+  .count{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:13px;
+    color:var(--ink-dim);
+    white-space:nowrap;
+    direction:ltr;
+  }
+  .count b{color:var(--ink); font-weight:500;}
+
+  .pills{
+    display:flex;
+    flex-wrap:nowrap;
+    gap:8px;
+    overflow-x:auto;
+    margin-top:14px;
+    padding-bottom:2px;
+    scrollbar-width:thin;
+  }
+  .pills::-webkit-scrollbar{height:5px;}
+  .pills::-webkit-scrollbar-thumb{background:var(--line); border-radius:3px;}
+  .pill{
+    flex:none;
+    font-family:'Vazirmatn', Tahoma, sans-serif;
+    font-size:13px;
+    color:var(--ink-dim);
+    background:var(--pill-bg);
+    border:1px solid var(--line);
+    border-radius:999px;
+    padding:6px 14px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:background .12s, color .12s, border-color .12s;
+  }
+  .pill:hover{border-color:var(--teal);}
+  .pill.active{
+    background:var(--pill-active-bg);
+    border-color:var(--pill-active-bg);
+    color:var(--pill-active-ink);
+    font-weight:500;
+  }
+  .pill .n{opacity:.65; margin-right:4px; font-family:'IBM Plex Mono', ui-monospace, monospace;}
+  .pill.active .n{opacity:.85;}
+
+  #list{ margin-top:8px; }
+
+  .letter-head{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:12px;
+    letter-spacing:.1em;
+    color:var(--amber);
+    background:var(--amber-bg);
+    display:inline-block;
+    padding:2px 8px;
+    border-radius:5px;
+    margin:26px 0 10px;
+    direction:ltr;
+  }
+  .letter-head:first-child{margin-top:22px;}
+
+  .card{
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+    display:grid;
+    grid-template-columns:240px 1fr;
+    gap:6px 24px;
+  }
+  .card:last-child{border-bottom:0;}
+  .card-name-wrap{ display:flex; flex-direction:column; gap:5px; }
+  .card-name{
+    font-family:'IBM Plex Mono', ui-monospace, monospace;
+    font-size:14.5px;
+    font-weight:500;
+    color:var(--teal-ink);
+    line-height:1.4;
+    word-break:break-word;
+    direction:ltr;
+    text-align:right;
+    unicode-bidi:isolate;
+  }
+  .card-cat{
+    font-size:11.5px;
+    color:var(--ink-dim);
+    background:var(--teal-bg);
+    display:inline-block;
+    width:fit-content;
+    padding:2px 9px;
+    border-radius:5px;
+  }
+  .card-desc{
+    font-size:15px;
+    line-height:1.9;
+    color:var(--ink);
+  }
+  mark{
+    background:var(--amber-bg);
+    color:var(--ink);
+    border-radius:3px;
+    padding:0 2px;
+  }
+
+  .empty{
+    padding:64px 0;
+    text-align:center;
+    color:var(--ink-dim);
+    font-size:15px;
+    display:none;
+  }
+
+  @media (max-width:640px){
+    .card{grid-template-columns:1fr;}
+    .search-row{flex-wrap:wrap;}
+    .count{width:100%; order:2;}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow ltr">bijanshdevops/scientific-agent-skills</p>
+    <h1>فهرست مهارت‌های Scientific Agent Skills</h1>
+    <p class="lede">تمام Skillهای این فورک، دسته‌بندی‌شده بر اساس حوزه، همراه با شرح کامل هر یک مستقیماً از <code>SKILL.md</code>. برای تصمیم‌گیری درباره نصب با <code>npx skills add</code>، بر اساس حوزه فیلتر کنید یا جستجو کنید.</p>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-row">
+      <label class="search-shell">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="7" cy="7" r="5.2" stroke="currentColor" stroke-width="1.4"/><path d="M11 11L14.5 14.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <input id="search" type="text" dir="auto" placeholder="جستجو بر اساس نام یا توضیح…" autocomplete="off" />
+      </label>
+      <div class="count"><b id="shown">163</b> / <span id="total">163</span></div>
+    </div>
+    <div class="pills" id="pills"></div>
+  </div>
+
+  <div id="list"></div>
+  <div class="empty" id="empty">هیچ مهارتی با این جستجو مطابقت ندارد.</div>
+</div>
+
+<script>
+const SKILLS = [{"name": "adaptyv", "description": "نحوه استفاده از Adaptyv Bio Foundry API و SDK پایتون برای طراحی، ثبت و دریافت نتایج آزمایش‌های پروتئین. از این Skill برای Adaptyv، Foundry API، سنجش‌های اتصال پروتئین، غربالگری پروتئین، سنجش‌های BLI/SPR، سنجش‌های پایداری حرارتی، یا ثبت توالی‌های پروتئینی برای شناسایی تجربی استفاده کنید. همچنین وقتی کد از adaptyv، adaptyv_sdk یا FoundryClient وارد می‌شود یا به foundry-api-public.adaptyvbio.com اشاره دارد، فعال می‌شود.", "category": "زیست‌شناسی ساختاری و پروتئین"}, {"name": "aeon", "description": "این Skill برای وظایف یادگیری ماشین سری‌های زمانی از جمله دسته‌بندی، رگرسیون، خوشه‌بندی، پیش‌بینی، تشخیص ناهنجاری، قطعه‌بندی و جستجوی تشابه استفاده می‌شود. برای داده‌های زمانی، الگوهای متوالی یا مشاهدات نمایه‌شده با زمان که به الگوریتم‌های تخصصی فراتر از روش‌های استاندارد ML نیاز دارند مناسب است. به‌ویژه برای تحلیل سری‌های زمانی تک‌متغیره و چندمتغیره با APIهای سازگار با scikit-learn طراحی شده.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "analytical-method-validation", "description": "برنامه‌ریزی، اجرا و مستندسازی اعتبارسنجی، صحه‌گذاری و انتقال روش‌های تحلیلی طبق چارچوب‌های ICH Q2(R2) و Q14، USP، ICH M10 زیست‌تحلیلی، CLSI EP یا ISO/IEC 17025. برای HPLC، LC-MS/MS، GC، CE، ICP-MS، انحلال، qNMR، qPCR، NIR و سنجش‌های اتصال لیگاند یا سلولی، هر زمان که پرسش این باشد که آیا یک روش برای هدف موردنظرش مناسب است. کلیدواژه‌ها شامل «اعتبارسنجی روش»، «AMV»، «پروتکل اعتبارسنجی»، «معیارهای پذیرش»، «خطی بودن»، «دقت و صحت»، «تکرارپذیری»، «حد تشخیص (LOD)»، «حد کمی‌سازی (LOQ)»، «اختصاصیت»، «استحکام»، «انتقال روش» و هر درخواستی برای نشان دادن اینکه یک سنجش کار می‌کند.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "anndata", "description": "ساختار داده برای ماتریس‌های حاشیه‌نویسی‌شده در تحلیل تک‌سلولی. هنگام کار با فایل‌های h5ad یا یکپارچه‌سازی با اکوسیستم scverse استفاده کنید. این Skill مربوط به فرمت داده است؛ برای گردش‌کارهای تحلیلی از scanpy، برای مدل‌های احتمالاتی از scvi-tools و برای پرس‌وجوهای مقیاس‌جمعیتی از cellxgene-census استفاده کنید.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "arbor", "description": "بهبود خودکار یک artifact واقعی (کد، دستور آموزش، هارنس عامل، خط لوله داده، پرامپت) در برابر یک هدف و یک ارزیاب، با استفاده از Hypothesis Tree Refinement (HTR) از مقاله Arbor. هر زمان که کسی بخواهد چیزی را طی آزمایش‌های متعدد بهینه کند بدون بیش‌برازش روی مجموعه توسعه، از این Skill استفاده کنید — مثلاً «امتیاز ارزیابی مدلم را بالا ببر»، «این عامل/هارنس را بهبود بده»، «این خط لوله را تنظیم کن»، «مبنا را در این محک شکست بده». حتی اگر کاربر نگوید «Arbor» یا «درخت فرضیه» اما چرخه‌های تکراری آزمایش-و-ارزیابی، کاوش انشعابی ایده‌های رقیب، یا نگرانی درباره شکاف توسعه/آزمون را توصیف کند، فعال می‌شود.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "arboreto", "description": "استنتاج شبکه‌های تنظیمی ژن (GRN) از داده‌های بیان ژن با استفاده از الگوریتم‌های مقیاس‌پذیر (GRNBoost2، GENIE3). هنگام تحلیل داده‌های ترانسکریپتومیک (بالک RNA-seq، تک‌سلولی RNA-seq) برای شناسایی روابط فاکتور رونویسی-ژن هدف و تعاملات تنظیمی استفاده کنید. از محاسبات توزیع‌شده برای مجموعه‌داده‌های بزرگ‌مقیاس پشتیبانی می‌کند.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "astropy", "description": "کتابخانه اصلی پایتون برای گردش‌کارهای نجوم و اخترفیزیک که به APIهای Astropy نیاز دارند، شامل واحدها/کمیت‌ها، مختصات، ورودی/خروجی FITS، جدول‌ها، سیستم‌های زمانی، WCS و کیهان‌شناسی. هنگام پیاده‌سازی یا رفع اشکال کد تحلیل داده نجومی با Astropy استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "autoskill", "description": "مشاهده صفحه‌نمایش کاربر از طریق screenpipe، تشخیص گردش‌کارهای پژوهشی تکراری، تطبیق آن‌ها با scientific-agent-skills موجود، و پیش‌نویس Skillهای جدید (یا دستورالعمل‌های ترکیبی که Skillهای موجود را زنجیره می‌کنند) برای الگوهایی که هنوز پوشش داده نشده‌اند. زمانی استفاده کنید که کاربر بخواهد کار اخیرش را تحلیل کند و بر اساس آنچه واقعاً انجام می‌دهد Skill پیشنهاد دهد. به دیمون screenpipe در حال اجرا محلی روی پورت 3030 نیاز دارد.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "benchling-integration", "description": "یکپارچه‌سازی SDK پایتون و REST API بنچلینگ برای موجودیت‌های رجیستری، موجودی، ورودی‌های ELN، گردش‌کارها، Benchling Apps و پرس‌وجوهای Data Warehouse. هنگام خودکارسازی داده‌های آزمایشگاهی با benchling-sdk یا API نسخه ۲ استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "bgpt-paper-search", "description": "جستجوی مقالات علمی و بازیابی داده‌های تجربی ساختاریافته استخراج‌شده از متن کامل مطالعات از طریق سرور BGPT MCP. بیش از ۲۵ فیلد به ازای هر مقاله شامل روش‌ها، نتایج، حجم نمونه، امتیاز کیفیت و نتیجه‌گیری بازمی‌گرداند. برای مرور ادبیات، ترکیب شواهد و یافتن جزئیات تجربی که فقط در چکیده موجود نیست استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "bids", "description": "این Skill را هنگام کار با مجموعه‌داده‌های Brain Imaging Data Structure (BIDS) به کار ببرید: سازمان‌دهی داده‌های علوم‌اعصاب و زیست‌پزشکی (MRI، EEG، MEG، iEEG، PET، میکروسکوپی، NIRS، موشن‌کپچر، EMG، طیف‌سنجی MR، رفتاری)، پرس‌وجوی چیدمان‌های BIDS، اعتبارسنجی انطباق، تبدیل DICOM به BIDS، نوشتن sidecarهای فراداده، یا ایجاد مشتقات BIDS.", "category": "بالینی و سلامت"}, {"name": "biopython", "description": "جعبه‌ابزار جامع زیست‌شناسی مولکولی. برای دستکاری توالی، تجزیه فایل (FASTA/GenBank/PDB)، فیلوژنتیک و دسترسی برنامه‌نویسی‌شده به NCBI/PubMed (Bio.Entrez) استفاده کنید. بهترین گزینه برای پردازش دسته‌ای، خط لوله‌های سفارشی بیوانفورماتیک، و خودکارسازی BLAST. برای جستجوهای سریع از gget و برای یکپارچه‌سازی چندسرویسی از bioservices استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "bioservices", "description": "رابط یکپارچه پایتون به بیش از ۴۰ سرویس بیوانفورماتیک. هنگام پرس‌وجوی چند پایگاه‌داده (UniProt، KEGG، ChEMBL، Reactome) در یک گردش‌کار واحد با API یکسان استفاده کنید. بهترین گزینه برای تحلیل بین‌پایگاه‌دادهای و نگاشت شناسه بین سرویس‌ها. برای جستجوهای سریع تک‌پایگاه‌داده از gget و برای دستکاری توالی/فایل از biopython استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "bulk-rnaseq", "description": "هماهنگ‌کننده سرتاسری بالک RNA-seq — خوانش‌های خام FASTQ را از طریق کنترل کیفیت و برش (FastQC، fastp/Trim Galore)، ترازبندی و کمی‌سازی (STAR، Salmon، featureCounts) عبور می‌دهد، ماتریس شمارش سطح ژن می‌سازد، سپس به بیان افتراقی (pydeseq2)، غنی‌سازی مسیر/GSEA (pathway-enrichment) و شکل‌های انتشار (scientific-visualization) واگذار می‌کند. برای RNA-seq تک‌سلولی از Skill مربوط به scanpy استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "cellxgene-census", "description": "پرس‌وجوی برنامه‌نویسی‌شده CZ CELLxGENE Census برای داده‌های عمومی نسخه‌بندی‌شده ترانسکریپتومیک تک‌سلولی و مکانی. هنگام نیاز به فراداده سلولی در مقیاس جمعیت، برش‌های بیان ژن، شمارش‌های خلاصه Census، آدرس/دانلود فایل‌های H5AD مبدأ، امبدینگ‌ها، یا مقایسه اطلس مرجع در ارگانیسم‌ها، بافت‌ها، بیماری‌ها و انواع سلول استفاده کنید. برای تحلیل داده‌های تک‌سلولی محلی خودتان از scanpy، anndata یا scvi-tools استفاده کنید.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "cirq", "description": "چارچوب محاسبات کوانتومی گوگل. هنگام هدف‌گیری سخت‌افزار Google Quantum AI، طراحی مدارهای آگاه از نویز، یا اجرای آزمایش‌های مشخصه‌سازی کوانتومی استفاده کنید. برای سخت‌افزار IBM از qiskit، برای یادگیری ماشین کوانتومی با تمایزپذیری خودکار از pennylane، و برای شبیه‌سازی‌های فیزیکی از qutip استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "citation-management", "description": "مدیریت جامع استنادها برای پژوهش دانشگاهی. جستجوی OpenAlex، PubMed و Google Scholar برای مقالات، استخراج فراداده دقیق، اعتبارسنجی استنادها و تولید ورودی‌های BibTeX با قالب صحیح. این Skill باید هنگام یافتن مقالات، تأیید اطلاعات استناد، تبدیل DOI به BibTeX، یا اطمینان از دقت مرجع در نگارش علمی استفاده شود.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "clinical-decision-support", "description": "آماده‌سازی و اعتبارسنجی artifactهای پژوهشی-محور ارزیابی پشتیبان تصمیم بالینی، پروفایل شواهد، کوهورت، بقا، بیومارکر/مدل، حریم خصوصی و حاکمیت. برای مستندسازی و ردیابی پژوهشی تجمعی یا مصنوعی — نه مراقبت بیمار یا عملیات بالینی زنده — استفاده کنید.", "category": "بالینی و سلامت"}, {"name": "clinical-reports", "description": "ایجاد ساختارهای پیش‌نویس ایمن و اجرای بررسی‌های قطعی محلی برای گزارش‌های مورد بالینی، تشخیصی، کارآزمایی، ایمنی و پژوهشی تجمعی. فقط با ورودی‌های مصنوعی، ناشناس‌سازی‌شده یا تجمعی و مانیفست‌های تأییدشده منبع استفاده کنید؛ هر خروجی نیاز به بازبینی واجد شرایط دارد.", "category": "بالینی و سلامت"}, {"name": "cobrapy", "description": "مدل‌سازی متابولیک مبتنی بر محدودیت (COBRA). FBA، FVA، حذف ژن، نمونه‌برداری شار، مدل‌های SBML، برای زیست‌شناسی سیستمی و تحلیل مهندسی متابولیک.", "category": "شیمی و کشف دارو"}, {"name": "consciousness-council", "description": "اجرای یک تبادل‌نظر چندمنظره «شورای ذهن» درباره هر پرسش، تصمیم یا چالش خلاقانه. هرگاه کاربر دیدگاه‌های متنوع بخواهد، در تصمیم‌گیری دشوار کمک بخواهد، بحث شورا/پنل درخواست کند، بخواهد مسئله را از زوایای مختلف بررسی کند، تحلیل وکیل مدافع شیطان بخواهد، از این Skill استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "dask", "description": "محاسبات توزیع‌شده برای گردش‌کارهای pandas/NumPy بزرگ‌تر از RAM. هنگام نیاز به مقیاس‌دهی کد pandas/NumPy موجود فراتر از حافظه یا در سراسر خوشه‌ها استفاده کنید. برای تحلیل out-of-core روی یک ماشین از vaex و برای سرعت درون‌حافظه‌ای از polars استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "database-lookup", "description": "پرس‌وجوی APIهای مستندشده پایگاه‌داده عمومی با نقاط پایانی، فیلترها، صفحه‌بندی و ردیابی منبع صریح. هنگامی که یک واقعیت علمی، نظارتی، مالی یا مبتنی بر پایگاه‌داده دیگر باید به‌صورت بازتولیدپذیر از یک منبع نام‌برده بازیابی شود — نه از دانش عمومی استنتاج شود — استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "datamol", "description": "بسته‌بند پایتونی روی RDKit با رابط ساده‌شده و مقادیر پیش‌فرض معقول. گزینه ترجیحی برای کشف داروی استاندارد شامل تجزیه SMILES، استانداردسازی، توصیف‌گرها، اثرانگشت‌ها، خوشه‌بندی، کانفورمرهای سه‌بعدی و پردازش موازی. برای کنترل پیشرفته یا پارامترهای سفارشی، مستقیماً از rdkit استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "deepchem", "description": "یادگیری ماشین مولکولی با featurizerهای متنوع و مجموعه‌داده‌های آماده. برای پیش‌بینی خواص (ADMET، سمیت) با ML سنتی یا GNN زمانی استفاده کنید که به گزینه‌های featurization متنوع و محک‌های MoleculeNet نیاز دارید. برای گردش‌کارهای گراف‌محور PyTorch از torchdrug و برای مجموعه‌داده‌های محک از pytdc استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "deepspot-m", "description": "تولید ترانسکریپتومیک مکانی مجازی سراسر ترانسکریپتوم از هیستولوژی H&E با DeepSpot-M. هنگام نیاز به بیان ژن مکانی به‌صورت log1p-CPM برای کاشی‌های ۲۲۴×۲۲۴ در حدود بزرگنمایی ۲۰x، یا اجرای پیش‌بینی روی کل اسلاید پس از کاشی‌بندی با histolab استفاده کنید.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "deeptools", "description": "جعبه‌ابزار تحلیل NGS. تبدیل BAM به bigWig، کنترل کیفیت (همبستگی، PCA، اثرانگشت)، نقشه‌های حرارتی/پروفایل (TSS، پیک‌ها)، برای تجسم ChIP-seq، RNA-seq و ATAC-seq.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "depmap", "description": "پرس‌وجوی Cancer Dependency Map (DepMap) برای امتیازهای وابستگی ژن رده سلولی سرطانی (CRISPR Chronos)، داده‌های حساسیت دارویی و پروفایل‌های اثر ژن. برای شناسایی آسیب‌پذیری‌های اختصاصی سرطان، تعاملات کشندگی مصنوعی و اعتبارسنجی اهداف دارویی انکولوژی استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "dhdna-profiler", "description": "استخراج الگوهای شناختی و اثرانگشت تفکر از هر متن. هنگامی که کاربر می‌خواهد نحوه تفکر کسی را تحلیل کند، سبک شناختی را بفهمد، الگوهای نوشتار یا گفتار را پروفایل کند، یا سبک‌های تفکر بین افراد را مقایسه کند، از این Skill استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "diffdock", "description": "داکینگ مولکولی DiffDock و DiffDock-L. برای پیش‌بینی حالت پروتئین-مولکول کوچک از PDB یا توالی به‌علاوه SMILES/SDF/MOL2، داکینگ دسته‌ای، غربالگری مجازی و تفسیر اطمینان حالت استفاده کنید. برای پیش‌بینی میل اتصال مناسب نیست.", "category": "شیمی و کشف دارو"}, {"name": "dnanexus-integration", "description": "ساخت و اجرای بارهای کاری ژنومیک بازتولیدپذیر روی DNAnexus با CLI به‌نام dx، dxpy، اپ‌ها/اپلت‌ها، گردش‌کارهای بومی، dxCompiler و Nextflow. برای انتقال داده DNAnexus، توسعه dxapp.json، پایش اجرا، درون‌ریزی گردش‌کار و خودکارسازی پروژه استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "docx", "description": "این Skill را هرگاه کاربر بخواهد سند Word (فایل‌های .docx) یا قالب Word (فایل‌های .dotx) ایجاد، خواندن، ویرایش یا دستکاری کند به کار ببرید. شامل هر اشاره‌ای به «سند Word»، «.docx»، «.dotx»، یا درخواست تولید اسناد حرفه‌ای با قالب‌بندی مانند فهرست مطالب، سرفصل، شماره صفحه یا سربرگ می‌شود. برای PDF، صفحه‌گسترده، Google Docs یا وظایف کدنویسی نامرتبط با تولید سند استفاده نکنید.", "category": "نگارش علمی و اسناد"}, {"name": "esm", "description": "هنگام کار مستقیم با SDK پایتون esm، شناسه‌های مدل ESM3 یا ESMC، کلاینت‌های استنتاج Forge/Biohub، یا گردش‌کارهای تاخوردگی ESMFold2 استفاده کنید.", "category": "زیست‌شناسی ساختاری و پروتئین"}, {"name": "etetoolkit", "description": "تحلیل، دستکاری، مقایسه، حاشیه‌نویسی و تجسم درخت‌های فیلوژنتیک یا سلسله‌مراتبی دیگر با ETE 4. برای ورودی/خروجی درخت Newick/Nexus، ویرایش توپولوژی و تطبیق الگو، مقایسه‌های Robinson-Foulds، رویدادهای تکاملی درخت ژن و آشتی، طبقه‌بندی NCBI/GTDB، کاوش SmartView و رندر انتشار استفاده کنید. برای استنتاج درخت از توالی خام از آن استفاده نکنید؛ ابتدا توالی‌ها را تراز کرده و درخت را استنتاج کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "exa-search", "description": "جعبه‌ابزار وب با قدرت Exa، تنظیم‌شده برای محتوای علمی و فنی. هنگامی که کاربر نیاز به جستجوی وب یا واکشی/استخراج محتوای URL دارد از این Skill استفاده کنید. شامل جستجوی وب و استخراج URL (واکشی صفحات، مقالات، PDFهای دانشگاهی به‌صورت دسته‌ای) می‌شود.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "experimental-design", "description": "طراحی آزمایش‌ها و مطالعات پیش از جمع‌آوری داده — انتخاب طرح، تصادفی‌سازی، بلوک‌بندی و چیدمان ترکیب‌های تیمار به‌گونه‌ای که نتایج قابل تفسیر باشند. هرگاه کسی در حال برنامه‌ریزی مطالعه است، می‌پرسد چگونه آزمودنی‌ها/نمونه‌ها را به گروه‌ها اختصاص دهد، یا به تصادفی‌سازی، بلوک‌بندی، طرح‌های فاکتوریل، طراحی آزمایش (DOE)، بهینه‌سازی سطح پاسخ اشاره کند فعال می‌شود. برای محاسبه حجم نمونه یا توان از statistical-power و برای تحلیل داده‌های جمع‌آوری‌شده از statistical-analysis استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "exploratory-data-analysis", "description": "انجام تحلیل اکتشافی محدود و محلی روی فایل‌های علمی به‌طور صریح پشتیبانی‌شده. برای پروفایل‌های CSV/TSV/JSON ویرایش‌شده؛ بازرسی اختیاری NumPy، HDF5، FASTA/FASTQ و فراداده تصویر پایه؛ ممیزی گم‌شدگی/نشت؛ حساسیت پرت‌ها و تبدیل‌ها؛ و اسکلت‌های گزارش EDA دقیق استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "flowio", "description": "خواندن، بازرسی و نوشتن فایل‌های Flow Cytometry Standard (FCS) نسخه‌های ۲٫۰، ۳٫۰ و ۳٫۱ با FlowIO. برای بازرسی فراداده و کانال FCS سطح‌پایین، استخراج رویداد NumPy، فایل‌های چند-مجموعه‌داده، خروجی جدول و ساخت FCS 3.1 استفاده کنید؛ برای جبران‌سازی، تبدیل‌های سیتومتری، دروازه‌بندی یا فضاهای کاری FlowJo از FlowKit استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "fluidsim", "description": "برنامه‌ریزی، پیکربندی، بازرسی، ازسرگیری و تحلیل شبیه‌سازی‌های دینامیک سیالات محاسباتی (CFD) محدود FluidSim با بررسی‌های صریح اعتبار عددی و ایمنی HPC. برای انتخاب حل‌گر FluidSim، بازبینی پارامتر، تنظیم FFT/MPI، تشخیص خروجی یا سازگاری ازسرگیری استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "generate-image", "description": "تولید یا ویرایش تصاویر با مدل‌های هوش مصنوعی از طریق OpenRouter Image API (Gemini، Seedream، Recraft، GPT-Image، Riverflow). برای عکس‌ها، تصویرسازی، آثار هنری، هنر مفهومی، دارایی‌های بصری، لوگو و ویرایش یا ترکیب تصویر از تصاویر مرجع استفاده کنید. برای فلوچارت، مدار و دیگر نمودارهای فنی، به‌جای آن از Skill مربوط به scientific-schematics استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "geniml", "description": "استفاده از Geniml برای گردش‌کارهای بازه‌ژنومی محلی ممیزی‌شده: اعتبارسنجی قراردادهای BED و universe، برنامه‌ریزی اجراهای Region2Vec یا scEmbed، بازرسی سازگاری مدل/توکنایزر، و ارزیابی universeهای اجماعی.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "genomic-coordinates", "description": "تبدیل بازه‌های ژنومی بین قراردادهای مختصاتی، نرمال‌سازی و مقایسه بازنمایی‌های واریانت، و تشخیص ناسازگاری بین اسمبلی یا نام‌گذاری contig پیش از آنکه یک تحلیل را خراب کنند. هرگاه مختصات از مرز فرمت، ابزار یا اسمبلی عبور کند — تبدیل بین BED، GFF/GTF، VCF، SAM/BAM و غیره؛ چپ‌چین یا برش indelها؛ بررسی اینکه آیا دو رکورد واریانت یک تغییر را توصیف می‌کنند؛ یا تشخیص مشکلات GRCh37 در برابر hg19 در برابر GRCh38 — استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "genomic-intelligence", "description": "پیش‌بینی ویژگی‌های تنظیمی، ساختار ژن و بیان مستقیماً از توالی DNA با استفاده از مدل‌های زبان DNA مبتنی بر ترانسفورمر میزبانی‌شده Genomic Intelligence — بدون نیاز به GPU یا وزن مدل محلی. شش وظیفه از طریق REST API و یک سرور MCP میزبانی‌شده: نواحی پروموتر، جایگاه‌های اسپلایس، فعالیت تقویت‌کننده، حالت کروماتین، توالی-به-بیان، و حاشیه‌نویسی ژن de-novo.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "geomaster", "description": "Skill جامع علوم مکانی که سنجش از دور، GIS، تحلیل مکانی، یادگیری ماشین برای مشاهده زمین و بیش از ۳۰ حوزه علمی را پوشش می‌دهد. از پردازش تصاویر ماهواره‌ای (Sentinel، Landsat، MODIS)، عملیات داده برداری و رستری، آمار مکانی، پردازش ابر نقطه، گردش‌کارهای بومی ابر (STAC، COG) و ۸ زبان برنامه‌نویسی با بیش از ۵۰۰ نمونه کد پشتیبانی می‌کند.", "category": "علوم مکانی و زمین"}, {"name": "geopandas", "description": "راهنما و ابزارهای ممیزی محلی برای گردش‌کارهای پایتون که مستقیماً از GeoSeries، GeoDataFrame، عملیات مکانی یا ورودی/خروجی داده برداری GeoPandas استفاده می‌کنند.", "category": "علوم مکانی و زمین"}, {"name": "get-available-resources", "description": "تشخیص موجودی میزبان و محدودیت‌های مؤثر CPU، حافظه، دیسک، زمان‌بند، کانتینر و شتاب‌دهنده هنگامی که کاربر برنامه‌ریزی آگاه از منابع می‌خواهد یا پیش از یک بار کاری محلی به‌وضوح حساس به منابع. یک عکس‌فوری JSON ویرایش‌شده و کمک‌کننده‌های برنامه‌ریزی محافظه‌کارانه تولید می‌کند.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "gget", "description": "پرس‌وجوهای سریع CLI/پایتون به بیش از ۲۰ پایگاه‌داده بیوانفورماتیک. برای جستجوهای سریع: اطلاعات ژن، BLAST/BLAT، دانلود توالی ویروسی، ساختارهای AlphaFold، تحلیل غنی‌سازی و غیره استفاده کنید. برای پردازش دسته‌ای یا BLAST پیشرفته از biopython و برای گردش‌کارهای چندپایگاه‌دادهای پایتون از bioservices استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "ginkgo-cloud-lab", "description": "ثبت و مدیریت پروتکل‌ها روی Ginkgo Bioworks Cloud Lab، یک رابط تحت‌وب برای اجرای خودکار آزمایشگاهی روی Reconfigurable Automation Carts (RAC). هنگامی که کاربر می‌خواهد بیان و تخلیص پروتئین، کمی‌سازی، سنتز IVT mRNA/circRNA، سنجش‌های توسعه‌پذیری یا به‌گونه‌ای دیگر با خدمات Ginkgo Cloud Lab تعامل کند استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "glycoengineering", "description": "تحلیل و مهندسی گلیکوزیلاسیون پروتئین. اسکن توالی‌ها برای سکون‌های N-گلیکوزیلاسیون، پیش‌بینی نقاط داغ O-گلیکوزیلاسیون، و دسترسی به ابزارهای گلیکومهندسی گردآوری‌شده (NetOGlyc، GlycoShield، GlycoWorkbench). برای مهندسی گلیکوپروتئین، بهینه‌سازی آنتی‌بادی درمانی و طراحی واکسن.", "category": "زیست‌شناسی ساختاری و پروتئین"}, {"name": "gtars", "description": "استفاده از Gtars برای مدل‌های بازه ژنومی محلی و جبر مجموعه، هم‌پوشانی و شمارش، اجماع و پوشش، توکن‌سازی، پردازش قطعه، و برنامه‌ریزی refget/BEDbase در پایتون، Rust و CLI.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "histolab", "description": "استخراج و پیش‌پردازش سبک کاشی WSI. برای پردازش ساده اسلاید، تشخیص بافت، استخراج کاشی و نرمال‌سازی رنگ برای تصاویر H&E استفاده کنید. برای پروتئومیک مکانی پیشرفته، تصویربرداری چندگانه یا خط لوله‌های یادگیری عمیق از pathml استفاده کنید.", "category": "بالینی و سلامت"}, {"name": "hugging-science", "description": "هنگامی که کاربر در یک حوزه علمی مانند زیست‌شناسی، شیمی، فیزیک، نجوم، اقلیم، ژنومیک، مواد، پزشکی، بوم‌شناسی، انرژی، مهندسی، ریاضیات، کشف دارو یا طراحی پروتئین کار AI/ML انجام می‌دهد استفاده کنید. Hugging Science یک کاتالوگ گردآوری‌شده از مجموعه‌داده‌ها، مدل‌ها، مقالات وبلاگ و Spaceهای تعاملی علمی است.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "hypogenic", "description": "برنامه‌ریزی و ممیزی استفاده از ChicagoHAI HypoGeniC/HypoRefine برای تولید فرضیه به کمک LLM از مجموعه‌داده‌های متنی برچسب‌گذاری‌شده. برای بسته hypogenic، پیکربندی‌های وظیفه‌اش، بانک‌های فرضیه یا مجموعه‌داده‌های HypoBench استفاده کنید — نه برای فرمول‌بندی دستی فرضیه یا اعتبارسنجی علمی.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "hypothesis-generation", "description": "فرمول‌بندی پرسش‌های علمی محدود به شواهد، فرضیه‌های کاندید، توضیحات رقیب، ادعاهای علّی یا همبستگی، پیش‌بینی‌های تمایزدهنده، اندازه‌گیری‌ها و طرح‌های تحلیل آماده پیش‌ثبت. هنگام تبدیل مشاهدات یا یافته‌های اولیه به طرح‌های پژوهشی شفاف و آزمون‌پذیر بدون رفتار با فرضیه‌ها به‌عنوان واقعیت استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "imaging-data-commons", "description": "پرس‌وجو و دانلود داده‌های تصویربرداری سرطان عمومی از NCI Imaging Data Commons. برای هر پرسشی درباره مجموعه‌های IDC، مجموعه‌داده‌های تصویربرداری سرطان، دسترسی به داده DICOM، رادیولوژی یا مجموعه‌های آموزش AI پاتولوژی استفاده کنید. نیازی به احراز هویت نیست.", "category": "بالینی و سلامت"}, {"name": "infographics", "description": "ایجاد اینفوگرافیک‌های حرفه‌ای با استفاده از Nano Banana Pro AI با بازپالایش تکراری هوشمند. از Gemini 3.6 Flash برای بازبینی کیفیت استفاده می‌کند. با research-lookup و جستجوی وب برای داده دقیق یکپارچه می‌شود. از ۱۰ نوع اینفوگرافیک، ۸ سبک صنعتی و پالت‌های ایمن برای کوررنگی پشتیبانی می‌کند.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "iso-standards-readiness", "description": "آماده‌سازی و بازبینی ساختاری شواهد آمادگی برای استانداردهای سیستم مدیریت ISO و صلاحیت آزمایشگاهی — ISO 13485، ISO 14971، ISO/IEC 17025 و ISO 15189. برای تصمیمات کاربردپذیری قانونی، انطباق، صدور گواهی یا اعتباربخشی مناسب نیست.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "lab-hardware-cad", "description": "طراحی سخت‌افزار آزمایشگاهی سفارشی به‌صورت مدل‌های پارامتریک build123d و صدور فایل‌های آماده ساخت STEP، STL و DXF — تراشه‌های میکروسیالی، پایه‌های اپتومکانیکی، نگهدارنده کووت و میکروپلیت، رک لوله و تجهیزات چاپ سه‌بعدی. هنگامی که یک کار پژوهشی به قطعه فیزیکی نیاز دارد استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "labarchive-integration", "description": "یکپارچه‌سازی امن با API رسمی LabArchives ELN و Inventory API نسخه ۱. برای انتخاب نقطه پایانی منطقه‌ای، ساخت درخواست امضاشده، جریان‌های مجوز کاربر و اعتبارسنجی محلی کانتینر LA استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "lamindb", "description": "هنگام کار با LaminDB، دریاچه‌داده متن‌باز مبتنی بر شجره‌نامه برای مجموعه‌داده‌ها و مدل‌های زیستی استفاده کنید. راه‌اندازی، ثبت artifact، پرس‌وجو/جستجو، ردیابی شجره‌نامه، اعتبارسنجی، حاشیه‌نویسی مبتنی بر آنتولوژی با Bionty، مجموعه‌ها و یکپارچه‌سازی گردش‌کار را پوشش می‌دهد.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "latchbio-integration", "description": "ساخت، ثبت، رفع اشکال و اجرای گردش‌کارهای بیوانفورماتیک روی Latch با استفاده از SDK پایتون، CLI، Latch Data و Registry، Nextflow، Snakemake و Latch MCP. هنگام نوشتن یا استقرار گردش‌کارهای Latch استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "latex-posters", "description": "ایجاد پوسترهای پژوهشی حرفه‌ای در LaTeX با استفاده از beamerposter، tikzposter یا baposter. پشتیبانی از ارائه‌های کنفرانسی، پوسترهای دانشگاهی و ارتباطات علمی. شامل طراحی چیدمان، طرح رنگ، قالب‌های چندستونی و یکپارچه‌سازی شکل می‌شود.", "category": "نگارش علمی و اسناد"}, {"name": "liteparse", "description": "تجزیه محلی سند و PDF که متن مکانی همراه با کادرهای محصورکننده بازمی‌گرداند. برای استخراج متن از PDF، DOCX، فایل‌های Office و تصاویر؛ اجرای OCR روی اسکن‌ها؛ تولید JSON با حفظ چیدمان برای RAG؛ یا رندر صفحات به PNG استفاده کنید. قابلیت متمایز: پردازش کاملاً محلی بدون API ابری.", "category": "نگارش علمی و اسناد"}, {"name": "literature-review", "description": "انجام مرورهای ادبیات جامع و نظام‌مند با استفاده از چند پایگاه‌داده دانشگاهی (PubMed، arXiv، bioRxiv، Semantic Scholar و غیره). این Skill باید هنگام انجام مرورهای نظام‌مند ادبیات، متاآنالیز، ترکیب پژوهشی، یا جستجوهای ادبیات جامع استفاده شود. اسناد Markdown و PDF با قالب حرفه‌ای و استنادهای تأییدشده در چند سبک (APA، Nature، Vancouver) ایجاد می‌کند.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "markdown-mermaid-writing", "description": "Skill جامع نگارش Markdown و نمودار Mermaid. هنگام ایجاد هر سند علمی، گزارش، تحلیل یا تجسم استفاده کنید. نمودارهای متن‌محور را به‌عنوان استاندارد پیش‌فرض مستندسازی با راهنماهای سبک کامل، ۲۴ مرجع نوع نمودار و ۹ قالب سند برقرار می‌کند.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "market-research-reports", "description": "ساخت گزارش‌های تحقیقات بازار قابل‌ردیابی به شواهد و سناریوهای اندازه‌گیری یا پیش‌بینی بازار مبتنی بر فرض. برای تعریف بازار، شواهد صنعت و مشتری، چشم‌انداز رقابتی، تطبیق TAM/SAM/SOM، حساسیت پیش‌بینی و اسکلت‌های گزارش قابل‌ممیزی استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "markitdown", "description": "تبدیل اسناد ناهمگون و URIهای منتخب به Markdown با Microsoft MarkItDown برای تحلیل متن، جستجو و درون‌ریزی LLM/RAG. تبدیل محلی ایمن، استریم‌ها، فرمت‌های Office/PDF/داده، گردش‌کارهای دسته‌ای، افزونه‌ها، OCR بینایی و سرور رسمی MCP را پوشش می‌دهد.", "category": "نگارش علمی و اسناد"}, {"name": "matchms", "description": "پردازش، پاکسازی، مقایسه و جستجوی طیف‌های جرمی تاندم با matchms. برای ورودی/خروجی فایل MS/MS، هماهنگ‌سازی فراداده، فیلتر پیک، تشابه طیفی، تطبیق کتابخانه و شبکه‌های شباهت مولکولی استفاده کنید. برای تشخیص ویژگی LC-MS یا خط لوله‌های پروتئومیک به‌جای آن از pyopenms استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "matlab", "description": "ساخت، بازبینی، مهاجرت و برنامه‌ریزی ایمن گردش‌کارهای عددی MATLAB یا GNU Octave، شامل آرایه‌ها، داده جدولی/زمانی، آزمون‌ها، پروژه‌ها، گرافیک، فایل‌های MAT و تعامل‌پذیری صریح با پایتون.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "matplotlib", "description": "کتابخانه رسم سطح‌پایین برای سفارشی‌سازی کامل. هنگام نیاز به کنترل ریزدانه بر هر عنصر نمودار یا ایجاد انواع نمودار جدید استفاده کنید. صدور به PNG/PDF/SVG برای انتشار. برای نمودارهای آماری سریع از seaborn، برای نمودارهای تعاملی از plotly، و برای شکل‌های چندپنلی آماده انتشار از scientific-visualization استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "medchem", "description": "فیلترهای شیمی دارویی برای غربال ترکیبات. اعمال قوانین شبه‌دارویی بودن (Lipinski، Veber، CNS)، کاتالوگ‌های هشدار ساختاری (PAINS، NIBR، ChEMBL)، معیارهای پیچیدگی و زبان پرس‌وجوی medchem برای فیلتر کتابخانه.", "category": "شیمی و کشف دارو"}, {"name": "modal", "description": "Modal یک پلتفرم ابری بی‌سرور برای اجرای پایتون به‌صورت درخواستی، از جمله GPU درخواستی است. هنگام استقرار یا ارائه مدل‌های AI/ML، اجرای بارهای کاری شتاب‌یافته با GPU، ارائه نقاط پایانی وب، زمان‌بندی کارهای دسته‌ای، یا مقیاس‌دهی کد پایتون به کانتینرهای ابری با SDK مودال استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "molecular-dynamics", "description": "اجرا و تحلیل شبیه‌سازی‌های دینامیک مولکولی با OpenMM و MDAnalysis. راه‌اندازی سیستم‌های پروتئین/مولکول کوچک، تعریف میدان‌های نیرو، اجرای کمینه‌سازی انرژی و MD تولیدی، تحلیل مسیرها (RMSD، RMSF، نقشه‌های تماس). برای زیست‌شناسی ساختاری، اتصال دارو و بیوفیزیک.", "category": "شیمی و کشف دارو"}, {"name": "molfeat", "description": "featurization مولکولی برای ML (بیش از ۱۰۰ featurizer). ECFP، MACCS، توصیف‌گرها، مدل‌های از‌پیش‌آموزش‌دیده (ChemBERTa)، تبدیل SMILES به ویژگی، برای QSAR و ML مولکولی.", "category": "شیمی و کشف دارو"}, {"name": "ncats-arax", "description": "پرس‌وجوی API تولیدی NCATS Translator ARAX برای روابط گراف دانش زیست‌پزشکی محدود، تایپ‌شده و ردیابی‌پذیر یک‌گامی و دوگامی. برای جستجوی محدود به Biolink از RTX-KG2، نرمال‌سازی موجودیت و بازرسی پیوندهای TRAPI استفاده کنید. برای استنتاج، رتبه‌بندی یا راهنمایی بالینی استفاده نکنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "networkx", "description": "ایجاد، تحلیل و تجسم شبکه‌ها و گراف‌های پیچیده در پایتون با NetworkX. هنگام کار با ساختارهای داده شبکه/گراف، محاسبه الگوریتم‌های گراف (کوتاه‌ترین مسیر، مرکزیت، خوشه‌بندی)، تشخیص جوامع، یا تولید شبکه‌های مصنوعی استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "neurokit2", "description": "استفاده از NeuroKit2 برای ساخت یا ممیزی گردش‌کارهای پژوهشی بازتولیدپذیر برای پیش‌پردازش سری‌زمانی فیزیولوژیک، تحلیل رویداد/بازه، همترازی چندوجهی، تنوع و پیچیدگی. برای تشخیص یا اعتبارسنجی دستگاه مناسب نیست.", "category": "بالینی و سلامت"}, {"name": "neuropixels-analysis", "description": "تحلیل سرتاسری ضبط‌های خارج‌سلولی Neuropixels با SpikeInterface. بارگذاری داده SpikeGLX/Open Ephys/NWB، پیش‌پردازش، تصحیح رانش/حرکت، اسپایک-سورتینگ Kilosort4 و پالایش واحد را پوشش می‌دهد.", "category": "بالینی و سلامت"}, {"name": "nextflow", "description": "ساخت، اجرا و رفع اشکال خط لوله‌های داده Nextflow و گردش‌کارهای nf-core از ابتدا تا انتها. هرگاه کاربر به Nextflow، nf-core، فایل‌های .nf، DSL2 اشاره کند، یا بخواهد یک خط لوله جامعه اجرا کند، اجراکننده‌ها/کانتینرها را پیکربندی کند، یا گردش‌کار را به HPC/ابر مقیاس دهد فعال می‌شود.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "omero-integration", "description": "بازرسی و خودکارسازی امن گردش‌کارهای داده میکروسکوپی در برابر OMERO.server با omero-py، BlitzGateway، OMERO CLI، جدول‌ها، حاشیه‌نویسی‌ها، ROIها و رندرینگ. برای موجودی محدود OMERO، صدور فراداده یا گردش‌کارهای نوشتن بازبینی‌شده استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "onekgpd", "description": "پرس‌وجوی مجموعه‌داده پروژه ۱۰۰۰ ژنوم (۳٬۲۰۲ فرد با توالی‌یابی کل ژنوم، GRCh38) در سطح شرکت‌کنندگان فردی. برای پرسش درباره افراد یا واریانت‌ها در کوهورت پروژه ۱۰۰۰ ژنوم، خویشاوندی بین افراد، یا فراوانی آلل استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "ontology-term-resolution", "description": "حل برچسب‌های متنی آزاد علمی به شناسه‌های اصطلاح آنتولوژی و اعتبارسنجی CURIEهای موجود در برابر EBI Ontology Lookup Service (OLS4). هرگاه شناسه آنتولوژی باید تولید یا بررسی شود — حاشیه‌نویسی بافت، نوع سلول، بیماری یا فنوتیپ؛ آماده‌سازی فراداده برای ارسال GEO، ENA یا CELLxGENE؛ یا بررسی اینکه آیا یک اصطلاح منسوخ شده — استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "open-notebook", "description": "جایگزین خودمیزبان و متن‌باز Google NotebookLM برای پژوهش و تحلیل سند مبتنی بر هوش مصنوعی. هنگام سازمان‌دهی مواد پژوهشی در دفترچه‌ها، درون‌ریزی منابع محتوایی متنوع (PDF، ویدیو، صدا، صفحات وب)، تولید یادداشت و خلاصه با AI، یا ساخت پادکست چندگوینده از پژوهش استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "openpiv", "description": "تحلیل سرعت‌سنجی تصویر ذره‌ای (PIV) با OpenPIV. هنگام استخراج میدان‌های سرعت از جفت تصاویر PIV، تحلیل دینامیک سیالات یا آزمایش‌های تجسم جریان، یا محاسبه گردابگی، نرخ کرنش و آمار آشفتگی از میدان‌های سرعت اندازه‌گیری‌شده استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "opentrons-integration", "description": "نگارش، بازبینی، مهاجرت و رفع اشکال پروتکل‌های رسمی Opentrons Python Protocol API نسخه ۲ برای ربات‌های Flex و OT-2. برای جابه‌جایی مایع اختصاصی ربات، چیدمان عرشه و ظروف آزمایشگاهی و پیپت‌ها استفاده کنید. برای گردش‌کاری که باید از چند فروشنده ربات پشتیبانی کند، از pylabrobot استفاده کنید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "optimize-for-gpu", "description": "شتاب‌دهی GPU پایتون علمی روی سخت‌افزار NVIDIA و تأیید صحت و سرعت نتیجه. برای بهینه‌سازی CUDA/GPU؛ بارهای کاری محدود به CPU از NumPy، SciPy، pandas، scikit-learn؛ پرسش‌های CuPy، cuDF، cuML؛ و پروفایل‌سازی یا گلوگاه چند-GPU استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "pacsomatic", "description": "جعبه‌ابزار اپراتور برای گردش‌کارهای تومور-نرمال جفت‌شده nf-core/pacsomatic از ورودی‌های BAM. هنگام نیاز کاربر به اعتبارسنجی ورودی‌های اجرا، تولید samplesheetهای سازگار با pacsomatic، اجرای محلی یا ارسال به زمان‌بندها (LSF/Slurm/PBS/SGE) استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "paper-lookup", "description": "جستجوی ۱۱ API ادبیات دانشگاهی برای مقالات، پیش‌چاپ‌ها، استنادها و متن کامل با دسترسی آزاد، و بازگرداندن نتایج با ردیابی بازتولیدپذیر. شامل PubMed، PMC، Europe PMC، bioRxiv، arXiv، OpenAlex، Crossref، Semantic Scholar و Unpaywall می‌شود.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "paperclip", "description": "جستجو و خواندن مقالات زیست‌پزشکی متن‌کامل، اسناد نظارتی FDA/PMDA/EMA، ثبت‌های کارآزمایی بالینی و ورودی‌های UniProt/PDB/ChEMBL با Paperclip CLI از GXL. شامل جستجوی معنایی محدود به منبع، grep سراسر پیکره و استنادهای دقیق تا سطح خط می‌شود.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "paperzilla", "description": "گفتگو با عامل خود درباره پروژه‌ها، توصیه‌ها و مقالات معتبر در Paperzilla. هنگامی که کاربران توصیه‌های پروژه اخیر، جزئیات مقاله معتبر، خلاصه‌های مبتنی بر Markdown یا صدور خوراک می‌خواهند استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "parallel-web", "description": "استفاده از Parallel CLI برای جستجوی وب، استخراج URL، پژوهش عمیق، غنی‌سازی داده ساختاریافته، کشف موجودیت و پایش تکراری وب. بهترین گزینه برای درخواست‌هایی که صراحتاً به شواهد وب جاری، کشف منبع دانشگاهی یا ردیابی تغییر مستمر نیاز دارند.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "pathml", "description": "استفاده از PathML برای گردش‌کارهای پاتولوژی محاسباتی محلی و صرفاً پژوهشی: بارگذاری و کاشی‌بندی اسلایدها، ساخت خط لوله‌های پیش‌پردازش و کنترل کیفیت، مدیریت داده h5path، کمی‌سازی تصاویر چندگانه و ساخت گراف‌های مکانی.", "category": "بالینی و سلامت"}, {"name": "pathogen-variant-surveillance", "description": "پرس‌وجوی داده نظارت ژنومی پاتوژن زنده از طریق API GenSpectrum LAPIS برای یافتن اینکه کدام گونه‌های ویروسی اکنون در گردش هستند، چقدر سریع رشد می‌کنند و چه جهش‌هایی دارند. هرگاه پرسش به وضعیت جاری جمعیت پاتوژن وابسته باشد — نه واقعیات به‌خاطرسپرده‌شده — استفاده کنید: کدام گونه SARS-CoV-2 غالب است، چه clade یا ژنوتیپ H5N1 در گردش است.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pathway-enrichment", "description": "اجرای تحلیل غنی‌سازی مسیر و مجموعه ژن روی فهرست‌های ژن یا داده‌های ژن رتبه‌بندی‌شده، سپس تفسیر نتایج. هرگاه کاربر مجموعه‌ای از ژن‌ها (بیان‌افتراقی، اصابت‌های غربالگری CRISPR) داشته باشد و بخواهد بداند کدام مسیرهای زیستی یا اصطلاحات GO غنی‌شده‌اند استفاده کنید. شامل ORA، GSEA و ssGSEA/GSVA می‌شود.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pdf", "description": "این Skill را هرگاه کاربر بخواهد هر کاری با فایل‌های PDF انجام دهد به کار ببرید. شامل خواندن یا استخراج متن/جدول از PDF، ترکیب یا ادغام چند PDF، جدا کردن PDF، چرخاندن صفحات، افزودن واترمارک، ایجاد PDF جدید، پر کردن فرم‌های PDF، رمزگذاری/رمزگشایی و OCR روی PDFهای اسکن‌شده می‌شود.", "category": "نگارش علمی و اسناد"}, {"name": "peer-review", "description": "آماده‌سازی پیش‌نویس‌های داوری همتا سازنده و محدود به شواهد و ارزیابی‌های ساختاریافته دست‌نوشته. برای بازبینی مجاز دست‌نوشته‌های علمی، پروتکل‌ها، پیش‌چاپ‌ها یا پیشنهادهای پژوهشی؛ انتخاب راهنمای گزارش‌دهی؛ و نقد روش، آمار، بازتولیدپذیری و اخلاق استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "pennylane", "description": "چارچوب یادگیری ماشین کوانتومی مستقل از سخت‌افزار با تمایزپذیری خودکار. هنگام آموزش مدارهای کوانتومی از طریق گرادیان، ساخت مدل‌های هیبریدی کوانتومی-کلاسیک، یا نیاز به قابلیت‌حمل دستگاه در IBM/Google/Rigetti/IonQ استفاده کنید. برای سخت‌افزار خاص از qiskit یا cirq و برای سیستم‌های کوانتومی باز از qutip استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "phylogenetics", "description": "ساخت و تحلیل درخت‌های فیلوژنتیک با استفاده از MAFFT (تراز چندگانه)، IQ-TREE 2 (حداکثر درست‌نمایی) و FastTree. تجسم با ETE3 یا FigTree. برای تحلیل تکاملی، ژنومیک میکروبی، فیلودینامیک ویروسی و مطالعات ساعت مولکولی.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pi-agent", "description": "ساخت با و استفاده از Pi، هارنس کدنویسی ترمینال مینیمال. برای نصب Pi، پیکربندی ارائه‌دهندگان/مدل‌ها، ایجاد Skillها/افزونه‌های Pi، جاسازی Pi از طریق SDK، یا استفاده از بسته‌های اکوسیستم مانند pi-subagents و pi-mcp-adapter استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "pkpd-modeling", "description": "مدل‌سازی و شبیه‌سازی فارماکوکینتیک و فارماکودینامیک — تحلیل غیرتقسیمی، PK تقسیمی و جمعیتی، PK/PD و پاسخ-مواجهه، TMDD، هم‌ارزی زیستی، مقیاس‌بندی آلومتریک و دوز اول-در-انسان. هنگام تحلیل داده غلظت-زمان، استخراج معیارهای مواجهه یا برازش مدل‌های PK/PD استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "polars", "description": "کتابخانه DataFrame با عملکرد بالا برای ETL، تحلیل و مهاجرت pandas در پایتون. برای دستکاری داده مبتنی بر عبارت با بهینه‌سازی پرس‌وجوی تنبل، اجرای موازی، پردازش out-of-core استریمی و تعامل‌پذیری Arrow استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "polars-bio", "description": "عملیات بازه ژنومی با عملکرد بالا و ورودی/خروجی فایل بیوانفورماتیک روی DataFrameهای Polars. هم‌پوشانی، نزدیک‌ترین، ادغام، پوشش، مکمل، تفریق برای بازه‌های BED/VCF/BAM/GFF. جایگزین سریع‌تر برای bioframe.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pptx", "description": "این Skill را هر زمان که فایل .pptx یا .potx به هر شکلی درگیر است به کار ببرید. شامل ایجاد بسته اسلاید، ارائه‌ها؛ خواندن، تجزیه یا استخراج متن؛ ویرایش یا به‌روزرسانی ارائه‌های موجود؛ ترکیب یا تقسیم فایل‌های اسلاید می‌شود. هرگاه کاربر «دک»، «اسلایدها» یا «ارائه» بگوید از این Skill استفاده کنید.", "category": "نگارش علمی و اسناد"}, {"name": "pptx-posters", "description": "ایجاد و ممیزی پوسترهای علمی قابل‌ویرایش در PowerPoint بدون ماکرو (.pptx) از محتوا و دارایی‌های محلی تأییدشده توسط نویسنده. هنگامی که خروجی درخواستی یک پوستر پژوهشی/کنفرانسی PowerPoint است و بررسی‌های دقیق فیزیکی، چاپگر و دسترسی‌پذیری لازم است استفاده کنید.", "category": "نگارش علمی و اسناد"}, {"name": "primekg", "description": "پرس‌وجوی Precision Medicine Knowledge Graph (PrimeKG) برای داده‌های زیستی چندمقیاسی شامل ژن‌ها، داروها، بیماری‌ها، فنوتیپ‌ها و موارد دیگر.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "protocolsio-integration", "description": "خواندن، اعتبارسنجی و صدور امن داده protocols.io با قراردادهای رسمی فعلی REST/MCP، یا ایجاد طرح‌های جهش غیر-اجرایی. کلاینت همراه فقط درخواست‌های GET محدود میزبان رسمی را با --execute صریح انجام می‌دهد.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "pufferlib", "description": "راهنمای نسخه‌آگاه برای محیط‌های یادگیری تقویتی PufferLib، برداری‌سازی، سیاست‌ها، آموزش PuffeRL، ارزیابی و بازبینی ایمن نقطه بازرسی. هنگام تطبیق محیط‌های Gymnasium/PettingZoo با PufferLib استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "pydeseq2", "description": "تحلیل بیان افتراقی ژن برای بالک RNA-seq با PyDESeq2، شامل طرح‌های فرمولی، آزمون‌های Wald، تصحیح FDR، کوچک‌سازی LFC و تجسم نتایج.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pydicom", "description": "استفاده از pydicom برای خواندن، بازرسی، نوشتن، تبدیل و پیش‌بررسی ایمن مجموعه‌داده‌های DICOM محلی و داده پیکسل. شامل فراداده DICOM، نحو انتقال، افزونه‌های فشرده‌سازی و بازبینی ناشناس‌سازی محدود می‌شود.", "category": "بالینی و سلامت"}, {"name": "pyhealth", "description": "ساخت خط لوله‌های یادگیری عمیق بالینی/سلامت با PyHealth — بارگذاری مجموعه‌داده‌های EHR/سیگنال/تصویربرداری (MIMIC-III/IV، eICU، OMOP)، تعریف وظایف (مرگ‌ومیر، بستری مجدد، توصیه دارو)، نمونه‌سازی مدل‌ها و محاسبه معیارهای بالینی.", "category": "بالینی و سلامت"}, {"name": "pylabrobot", "description": "توسعه و بازبینی منابع اتوماسیون آزمایشگاه PyLabRobot، طرح‌های جابه‌جایی مایع، شبیه‌سازی‌های آفلاین و یکپارچه‌سازی دستگاه‌های پشتیبانی‌شده. برای پروتکل‌ها یا پرسش‌های API PyLabRobot استفاده کنید؛ اجرای فیزیکی را پشت یک دروازه ایمنی اپراتور صریح نگه دارید.", "category": "اتوماسیون آزمایشگاه و LIMS"}, {"name": "pymatgen", "description": "تحلیل، اعتبارسنجی، تبدیل و تبدیل ساختارهای مواد و داده‌های محاسبه‌شده مواد با APIهای فعلی pymatgen، شامل نمودارهای فاز محلی، حساسیت تقارن و پرس‌وجوهای صریح محدود Materials Project.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "pymc", "description": "مدل‌سازی بیزی با PyMC. ساخت مدل‌های سلسله‌مراتبی، MCMC (NUTS)، استنتاج واریاسیونی، مقایسه LOO/WAIC، بررسی‌های پسین، برای برنامه‌نویسی و استنتاج احتمالاتی.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "pymoo", "description": "چارچوب بهینه‌سازی چندهدفه. NSGA-II، NSGA-III، MOEA/D، جبهه‌های پارتو، مدیریت محدودیت، محک‌ها (ZDT، DTLZ)، برای مسائل طراحی و بهینه‌سازی مهندسی.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "pyopenms", "description": "پلتفرم کامل تحلیل طیف‌سنجی جرمی. برای گردش‌کارهای پروتئومیک و متابولومیک — تشخیص ویژگی، شناسایی پپتید/پروتئین، کمی‌سازی بدون‌برچسب و ایزوباریک و خط لوله‌های پیچیده LC-MS/MS استفاده کنید. برای مقایسه طیفی ساده از matchms استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "pysam", "description": "گردش‌کارهای پایتون/HTSlib برای فایل‌های ژنومیک. هنگام خواندن، پرس‌وجو، فیلتر یا نوشتن SAM/BAM/CRAM، VCF/BCF، FASTA/FASTQ یا داده tabix با pysam، شامل pileup، پوشش و ایندکس‌گذاری استفاده کنید.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "pytdc", "description": "استفاده از Therapeutics Data Commons از طریق بسته پایتون PyTDC برای کشف رجیستری، دسترسی به مجموعه‌داده تأییدشده، تقسیم‌های آگاه از وظیفه، معیارهای ارزیاب، گروه‌های محک و گردش‌کارهای اوراکل مولکولی محدود.", "category": "شیمی و کشف دارو"}, {"name": "pytorch-lightning", "description": "چارچوب یادگیری عمیق (PyTorch Lightning). سازمان‌دهی کد PyTorch به LightningModuleها، پیکربندی Trainerها برای چند-GPU/TPU، لاگ‌گیری (W&B، TensorBoard) و آموزش توزیع‌شده (DDP، FSDP، DeepSpeed).", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "pyzotero", "description": "تعامل با کتابخانه‌های مدیریت مرجع Zotero با استفاده از کلاینت پایتون pyzotero. بازیابی، ایجاد، به‌روزرسانی و حذف موارد، مجموعه‌ها، برچسب‌ها و پیوست‌ها از طریق Zotero Web API نسخه ۳.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "qiskit", "description": "ساخت، شبیه‌سازی، transpile و اجرای مدارهای کوانتومی با Qiskit و IBM Quantum Runtime. برای مدارها و عملگرهای Qiskit 2.x، پرایمیتیوهای V2 Sampler یا Estimator، اجرای QPU آی‌بی‌ام، و کاهش خطا استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "qutip", "description": "شبیه‌سازی و ممیزی مدل‌های سیستم کوانتومی بسته و باز با QuTiP نسخه ۵، شامل گردش‌کارهای قطعی، مسیر، حالت پایدار، طیفی و فضای فاز. برای کار دینامیک کوانتومی محلی که فرضیات فیزیکی باید صریح باشند استفاده کنید.", "category": "فیزیک، کوانتوم و مواد"}, {"name": "rdkit", "description": "جعبه‌ابزار شیمی‌اطلاعاتی برای کنترل مولکولی ریزدانه. تجزیه SMILES/SDF، توصیف‌گرها (MW، LogP، TPSA)، اثرانگشت‌ها، جستجوی زیرساختار، تولید دوبعدی/سه‌بعدی و واکنش‌ها. برای گردش‌کارهای استاندارد با رابط ساده‌تر از datamol استفاده کنید؛ برای کنترل پیشرفته از rdkit مستقیماً استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "relsa-severity-assessment", "description": "ارزیابی شدت چندمتغیره و پیش‌بینی نقطه پایانی انسانی برای مطالعات حیوانات آزمایشگاهی با استفاده از امتیاز RELSA و پیش‌بینی foRcast مبتنی بر ARIMA. هنگام ترکیب شاخص‌های رفاه به یک امتیاز شدت به‌ازای هر حیوان در هر روز استفاده کنید.", "category": "بالینی و سلامت"}, {"name": "research-grants", "description": "نگارش پیشنهادهای پژوهشی رقابتی برای NSF، NIH، DOE، DARPA و NSTC تایوان. قالب‌بندی اختصاصی آژانس، معیارهای بازبینی، آماده‌سازی بودجه، تأثیرات گسترده‌تر و انطباق با الزامات ارسال.", "category": "نگارش علمی و اسناد"}, {"name": "research-lookup", "description": "گردآوری شواهد دانشگاهی جاری برای یک دست‌نوشته علمی یا خلاصه پژوهشی. هنگامی که کاربر صراحتاً بخواهد ادبیات، مراجع، شواهد پس‌زمینه یا بسته پژوهشی دست‌نوشته گردآوری شود استفاده کنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "rowan", "description": "Rowan یک پلتفرم گردش‌کار مدل‌سازی مولکولی و شیمی دارویی بومی-ابر با API پایتون است. برای پیش‌بینی pKa، مجموعه‌های کانفورمر و توتومر، داکینگ، هم‌تاخوردگی پروتئین-لیگاند، تولید MSA و دینامیک مولکولی استفاده کنید.", "category": "شیمی و کشف دارو"}, {"name": "scanpy", "description": "خط لوله استاندارد تحلیل RNA-seq تک‌سلولی. برای کنترل کیفیت، نرمال‌سازی، کاهش بعد (PCA/UMAP/t-SNE)، خوشه‌بندی، بیان افتراقی و تجسم استفاده کنید. برای مدل‌های یادگیری عمیق از scvi-tools و برای پرسش‌های فرمت داده از anndata استفاده کنید.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "scholar-evaluation", "description": "ارائه بازبینی توسعه‌ای کیفیت‌محور و قابل‌ردیابی به شواهد از آثار دانشگاهی و ممیزی معیارهای ارزیابی پژوهشی کم‌ریسک. هرگز برای رتبه‌بندی افراد یا تصمیمات با پیامد استفاده نکنید.", "category": "ادبیات علمی، دانش و ابزارهای پژوهشی"}, {"name": "scientific-brainstorming", "description": "تسهیل ایده‌پردازی علمی آگاه از شواهد با تولید مستقل، بحث ساختاریافته، فرضیات صریح، ارزیابی شفاف و گزارش‌های تصمیم. برای ایده‌پردازی اولیه پژوهش یا اولویت‌بندی جهت‌های کاندید استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "scientific-critical-thinking", "description": "ارزیابی ادعاهای علمی و کیفیت شواهد. برای ارزیابی اعتبار طراحی آزمایش، شناسایی سوگیری‌ها و متغیرهای مخدوش‌کننده، اعمال چارچوب‌های درجه‌بندی شواهد (GRADE، Cochrane) استفاده کنید. برای نگارش رسمی داوری همتا از peer-review استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "scientific-schematics", "description": "ایجاد نمودارهای علمی با کیفیت انتشار با استفاده از Nano Banana 2 AI با بازپالایش تکراری هوشمند. تخصصی در معماری‌های شبکه عصبی، نمودارهای سیستم، فلوچارت، مسیرهای زیستی و تجسم‌های علمی پیچیده.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "scientific-slides", "description": "ساخت دک‌های اسلاید و ارائه برای سخنرانی‌های پژوهشی. برای ساخت اسلایدهای PowerPoint، ارائه‌های کنفرانسی، سخنرانی سمینار یا اسلایدهای دفاع پایان‌نامه استفاده کنید. ساختار اسلاید، قالب‌های طراحی و راهنمای زمان‌بندی ارائه می‌دهد.", "category": "نگارش علمی و اسناد"}, {"name": "scientific-visualization", "description": "ایجاد و ممیزی شکل‌های علمی صادقانه، در دسترس و آماده انتشار با Matplotlib، Seaborn یا Plotly. برای طراحی شکل، چیدمان چندپنلی، نمایش عدم‌قطعیت و برنامه‌ریزی صدور مجله استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "scientific-writing", "description": "نگارش، بازبینی و ممیزی دست‌نوشته‌ها یا گزارش‌های علمی با ردیابی صریح شواهد، پوشش راهنمای گزارش‌دهی، پاسخگویی نویسندگی و بررسی‌های سازگاری محلی. برای بخش‌های دست‌نوشته، مراجع و آماده‌سازی ارسال استفاده کنید.", "category": "نگارش علمی و اسناد"}, {"name": "scikit-bio", "description": "جعبه‌ابزار داده زیستی. تحلیل توالی، ترازها، درخت‌های فیلوژنتیک، معیارهای تنوع (آلفا/بتا، UniFrac)، ترتیب‌دهی (PCoA)، PERMANOVA، برای تحلیل میکروبیوم.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "scikit-learn", "description": "یادگیری ماشین در پایتون با scikit-learn. هنگام کار با یادگیری نظارت‌شده، یادگیری بدون‌نظارت، ارزیابی مدل، تنظیم فراپارامتر، پیش‌پردازش یا ساخت خط لوله‌های ML استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "scikit-survival", "description": "ساخت، ارزیابی و ممیزی گردش‌کارهای بقای سانسورشده-راست یا ریسک-رقابتی با scikit-survival، شامل پیش‌پردازش ایمن از نشت، انتخاب مدل، پیش‌بینی احتمال و معیارهای آگاه از سانسور.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "scvelo", "description": "تحلیل سرعت RNA با scVelo. تخمین انتقال‌های حالت سلولی از دینامیک mRNA اسپلایس‌شده/اسپلایس‌نشده، استنتاج جهت‌های مسیر، محاسبه زمان نهفته و شناسایی ژن‌های محرک در RNA-seq تک‌سلولی. مکمل Scanpy/scVI-tools برای استنتاج مسیر.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "scvi-tools", "description": "مدل‌های مولد عمیق برای امیکس تک‌سلولی. هنگام نیاز به تصحیح دسته احتمالاتی (scVI)، یادگیری انتقالی، بیان افتراقی با عدم‌قطعیت، یا یکپارچه‌سازی چندوجهی (TOTALVI، MultiVI) استفاده کنید. برای خط لوله‌های تحلیل استاندارد از scanpy استفاده کنید.", "category": "تک‌سلولی و امیکس مکانی"}, {"name": "seaborn", "description": "تجسم آماری با یکپارچگی pandas. برای کاوش سریع توزیع‌ها، روابط و مقایسه‌های دسته‌ای با مقادیر پیش‌فرض جذاب استفاده کنید. بهترین گزینه برای نمودارهای جعبه‌ای، ویولن و نقشه‌های حرارتی. روی matplotlib ساخته شده. برای سبک انتشار از scientific-visualization استفاده کنید.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "shap", "description": "توضیح و ممیزی پیش‌بینی‌های یادگیری ماشین با SHAP. برای انتخاب توضیح‌دهنده‌ها و maskerهای SHAP، محاسبه و اعتبارسنجی انتساب ویژگی، مدیریت توضیحات چندخروجی، و تولید تجسم‌های محلی یا سراسری SHAP استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "simpy", "description": "ساخت، بازرسی، آزمون و تحلیل شبیه‌سازی‌های رویداد-گسسته فرآیندمحور محدود با SimPy، شامل رویدادها، منابع، وقفه‌ها، پایش، تکرارها، گرم‌شدن و تحلیل خروجی بازتولیدپذیر.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "stable-baselines3", "description": "الگوریتم‌های یادگیری تقویتی آماده تولید (PPO، SAC، DQN، TD3، DDPG، A2C) با API شبیه scikit-learn. برای آزمایش‌های استاندارد RL و نمونه‌سازی سریع استفاده کنید. برای آموزش موازی با عملکرد بالا یا سیستم‌های چندعاملی از pufferlib استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "statistical-analysis", "description": "تحلیل آماری هدایت‌شده برای داده‌های پژوهشی — انتخاب آزمون، بررسی فرضیات، اندازه‌های اثر، تحلیل توان، جایگزین‌های بیزی و گزارش‌دهی با قالب APA. هرگاه کاربر بخواهد گروه‌ها را مقایسه کند، فرضیه‌ای را آزمایش کند یا داده تجربی یا نظرسنجی را تحلیل کند استفاده کنید — حتی اگر آزمون خاصی را نام نبرد.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "statistical-power", "description": "محاسبات حجم نمونه و توان آماری برای برنامه‌ریزی مطالعات. هرگاه کسی بپرسد «چند آزمودنی/نمونه/تکرار لازم دارم»، یک تحلیل توان پیشینی یا حداقل اثر قابل‌تشخیص (MDE) بخواهد، یا نیاز به توجیه حجم نمونه برای گرنت یا پروتکل IRB داشته باشد استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "statsmodels", "description": "کتابخانه مدل‌های آماری برای پایتون. هنگام نیاز به کلاس‌های مدل خاص (OLS، GLM، مدل‌های مختلط، ARIMA) با تشخیص، باقیمانده‌ها و استنتاج دقیق استفاده کنید. بهترین گزینه برای اقتصادسنجی و سری‌های زمانی.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "sympy", "description": "هنگام نیاز به ریاضیات نمادین دقیق در پایتون — جبر، حسابان، حل معادله، جبر خطی نمادین، یا تولید کد از طریق lambdify/LaTeX — استفاده کنید. وقتی تقریب‌های اعشاری کافی هستند، NumPy یا SciPy را ترجیح دهید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "tamarind", "description": "دسترسی به مجموعه‌ای از ابزارهای متن‌باز طراحی مولکولی و زیست‌شناسی ساختاری روی پلتفرم Tamarind Bio، از طریق REST API یا سرور MCP آن — بدون نیاز به GPU محلی. شامل پیش‌بینی ساختار (AlphaFold، Boltz، Chai، ESMFold)، طراحی پروتئین و de novo (RFdiffusion، ProteinMPNN)، و داکینگ پروتئین-لیگاند می‌شود.", "category": "شیمی و کشف دارو"}, {"name": "tiledbvcf", "description": "ذخیره‌سازی و بازیابی کارآمد داده واریانت ژنومی با استفاده از TileDB. درون‌ریزی مقیاس‌پذیر VCF/BCF، افزودن نمونه افزایشی، ذخیره‌سازی فشرده، پرس‌وجوهای موازی و قابلیت‌های صدور برای ژنومیک جمعیتی.", "category": "ژنومیک و بیوانفورماتیک"}, {"name": "timesfm-forecasting", "description": "پیش‌بینی سری زمانی بدون‌آموزش با مدل بنیادی TimesFM گوگل. برای هر سری زمانی تک‌متغیره (فروش، سنسورها، انرژی، علائم حیاتی، آب‌وهوا) بدون آموزش مدل سفارشی استفاده کنید. از پیش‌بینی‌های نقطه‌ای و بازه‌های پیش‌بینی پشتیبانی می‌کند.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "torch-geometric", "description": "PyTorch Geometric (PyG) برای شبکه‌های عصبی گراف — دسته‌بندی گره/پیوند/گراف، پیام‌رسانی (GCN، GAT، GraphSAGE، GIN)، گراف‌های ناهمگون و نمونه‌برداری همسایه. هنگام کار با torch_geometric استفاده کنید، نه برای تحلیل‌های عمومی NetworkX.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "torchdrug", "description": "ساخت و رفع اشکال گردش‌کارهای TorchDrug برای گراف‌های مولکولی، پیش‌بینی خواص، پیش‌آموزش خودنظارتی، تولید مولکول، رتروسنتز، یادگیری بازنمایی پروتئین و استدلال گراف دانش.", "category": "شیمی و کشف دارو"}, {"name": "transformers", "description": "Hugging Face Transformers برای بارگذاری مدل‌های Hub، اجرای استنتاج pipeline، تولید متن و تنظیم‌دقیق Trainer روی وظایف NLP، بینایی، صدا و چندوجهی. هنگام کار با AutoModel، pipelineها یا tokenizerها استفاده کنید.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "treatment-plans", "description": "قالب‌بندی و اعتبارسنجی ساختاری مستندسازی طرح درمان محلی پس از آنکه تصمیمات بالینی قبلاً توسط متخصصان مجاز و دارای مجوز تأمین و تأیید شده‌اند. برای ردیابی منبع و سوابق مداخله تألیف‌شده توسط بالینگر استفاده کنید — نه برای تصمیم‌گیری بالینی.", "category": "بالینی و سلامت"}, {"name": "umap-learn", "description": "استفاده از UMAP-learn برای کاهش بعد غیرخطی، امبدینگ‌های دو/سه‌بعدی، پیش‌پردازش خوشه‌بندی، UMAP نظارت‌شده یا نیمه‌نظارت‌شده، DensMAP، AlignedUMAP و گردش‌کارهای Parametric UMAP.", "category": "یادگیری ماشین و هوش مصنوعی"}, {"name": "uncertainty-and-units", "description": "ردیابی واحدهای فیزیکی و انتشار عدم‌قطعیت اندازه‌گیری در محاسبات علمی با استفاده از pint و uncertainties. برای تبدیل واحد، بودجه عدم‌قطعیت GUM، انتشار مونت‌کارلو، و بررسی معقول بودن فیزیکی یک عدد استفاده کنید.", "category": "آمار، ریاضیات و طراحی آزمایش"}, {"name": "usfiscaldata", "description": "پرس‌وجوی API REST داده مالی خزانه‌داری ایالات متحده برای داده‌های مالی فدرال. نیازی به کلید API نیست. برای بدهی ملی، بیانیه‌های خزانه‌داری، حراج‌های اوراق خزانه، نرخ‌های بهره و آمار درآمد و هزینه دولت ایالات متحده استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "vaex", "description": "استفاده از این Skill برای پردازش و تحلیل مجموعه‌داده‌های جدولی بزرگ (میلیاردها ردیف) که از RAM موجود فراتر می‌روند. Vaex در عملیات DataFrame out-of-core، ارزیابی تنبل، تجمیع سریع و تجسم کارآمد داده بزرگ برتری دارد.", "category": "مهندسی داده و تجسم‌سازی"}, {"name": "venue-templates", "description": "آماده‌سازی دست‌نوشته‌های مجله، مقالات کنفرانس، پوسترهای پژوهشی و اسناد گرنت با استفاده از راهنمای قالب‌بندی اختصاصی محل انتشار و اسکلت‌های LaTeX همراه. هنگام انتخاب قالب رسمی یا بررسی قوانین صفحه یا ناشناسی استفاده کنید.", "category": "نگارش علمی و اسناد"}, {"name": "waypoint-bio", "description": "هنگام کار با مدل‌های بنیادی میکروبیوم متن‌باز Outpost Bio — نقاط بازرسی Waypoint، پیکره پیش‌آموزش Atlas، محک هشت‌وظیفه‌ای Compass، یا CLI به‌نام waypoint استفاده کنید. شامل امبد کردن نمونه‌های میکروبیوم و تنظیم‌دقیق روی داده فراوانی طبقه‌بندی می‌شود.", "category": "زیست‌شناسی ساختاری و پروتئین"}, {"name": "what-if-oracle", "description": "اجرای تحلیل سناریوی «چه می‌شود اگر» ساختاریافته با کاوش ۴ تا ۶ شاخه احتمال (بهترین، محتمل، بدترین، برگ برنده، مخالف، مرتبه دوم). هنگامی که کاربر پرسش‌های حدسی درباره آینده‌های نامطمئن یا برنامه‌ریزی احتمالی بپرسد استفاده کنید.", "category": "راهبرد پژوهش و ابزارهای عمومی"}, {"name": "xlsx", "description": "ایجاد، ویرایش، تحلیل یا تبدیل صفحه‌گسترده‌های Excel (.xlsx، .xlsm، .xltx) جایی که فایل کاربرگ محصول اصلی است. برای فرمول‌ها، قالب‌بندی، مدل‌های مالی و کاربرگ‌های چندصفحه‌ای استفاده کنید. برای اسناد Word یا گزارش‌های HTML استفاده نکنید.", "category": "نگارش علمی و اسناد"}, {"name": "zarr-python", "description": "آرایه‌های N-بعدی قطعه‌بندی‌شده برای ذخیره‌سازی ابری (Zarr-Python نسخه ۳). آرایه‌های فشرده، I/O موازی، S3/GCS از طریق fsspec، سازگار با NumPy/Dask/Xarray، برای خط لوله‌های محاسباتی علمی مقیاس‌بزرگ.", "category": "مهندسی داده و تجسم‌سازی"}];
+
+const listEl = document.getElementById('list');
+const searchEl = document.getElementById('search');
+const shownEl = document.getElementById('shown');
+const totalEl = document.getElementById('total');
+const emptyEl = document.getElementById('empty');
+const pillsEl = document.getElementById('pills');
+
+totalEl.textContent = SKILLS.length;
+
+let activeCat = 'همه';
+
+const catCounts = {};
+for(const s of SKILLS){ catCounts[s.category] = (catCounts[s.category] || 0) + 1; }
+const cats = ['همه', ...Object.keys(catCounts).sort((a,b) => catCounts[b] - catCounts[a])];
+
+function renderPills(){
+  pillsEl.innerHTML = cats.map(c => {
+    const n = c === 'همه' ? SKILLS.length : catCounts[c];
+    const active = c === activeCat ? ' active' : '';
+    return `<button class="pill${active}" data-cat="${escapeAttr(c)}">${escapeHtml(c)}<span class="n">${n}</span></button>`;
+  }).join('');
+}
+
+function escapeAttr(s){ return s.replace(/"/g, '&quot;'); }
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function highlight(text, q){
+  const safe = escapeHtml(text);
+  if(!q) return safe;
+  const idx = safe.toLowerCase().indexOf(q.toLowerCase());
+  if(idx === -1) return safe;
+  return safe.slice(0, idx) + '<mark>' + safe.slice(idx, idx + q.length) + '</mark>' + safe.slice(idx + q.length);
+}
+
+function render(){
+  const q = searchEl.value.trim().toLowerCase();
+  let filtered = SKILLS;
+  if(activeCat !== 'همه'){
+    filtered = filtered.filter(s => s.category === activeCat);
+  }
+  if(q){
+    filtered = filtered.filter(s => s.name.toLowerCase().includes(q) || s.description.toLowerCase().includes(q));
+  }
+
+  shownEl.textContent = filtered.length;
+  emptyEl.style.display = filtered.length ? 'none' : 'block';
+
+  let html = '';
+  let lastLetter = '';
+  for(const s of filtered){
+    const letter = s.name[0].toUpperCase();
+    if(!q && letter !== lastLetter){
+      html += '<div class="letter-head">' + letter + '</div>';
+      lastLetter = letter;
+    }
+    html += '<div class="card">'
+      + '<div class="card-name-wrap">'
+      +   '<div class="card-name">' + highlight(s.name, q) + '</div>'
+      +   '<div class="card-cat">' + escapeHtml(s.category) + '</div>'
+      + '</div>'
+      + '<div class="card-desc">' + highlight(s.description, q) + '</div>'
+      + '</div>';
+  }
+  listEl.innerHTML = html;
+}
+
+pillsEl.addEventListener('click', e => {
+  const btn = e.target.closest('.pill');
+  if(!btn) return;
+  activeCat = btn.dataset.cat;
+  renderPills();
+  render();
+});
+
+searchEl.addEventListener('input', render);
+renderPills();
+render();
+</script>
